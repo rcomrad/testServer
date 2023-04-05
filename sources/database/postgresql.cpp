@@ -274,8 +274,8 @@ data::Postgresql::createEnvironment(const data::DBSettings& aDBS) noexcept
     auto& aShameName = aDBS.shame;
 
     std::string statement = "CREATE DATABASE " + aDBS.name + " ";
-    // statement += " WITH ENCODING \'ISO_8859_5\' ";
-    // statement += "LC_COLLATE=\'C\' LC_CTYPE=\'C\' ";
+    statement += " WITH ENCODING \'ISO_8859_5\' ";
+    statement += "LC_COLLATE=\'C\' LC_CTYPE=\'C\' ";
     statement += "TEMPLATE=template0";
     statement += ";";
     nontransaction(statement);
@@ -285,8 +285,8 @@ data::Postgresql::createEnvironment(const data::DBSettings& aDBS) noexcept
 
     statements.emplace_back("CREATE USER " + aDBS.user + " WITH PASSWORD \'" +
                             aPassword + "\'");
-    // statements.emplace_back("ALTER ROLE " + aDBS.user +
-    //                         " SET client_encoding TO \'ISO_8859_5\'");
+    statements.emplace_back("ALTER ROLE " + aDBS.user +
+                            " SET client_encoding TO \'ISO_8859_5\'");
     statements.emplace_back("ALTER ROLE " + aUserName +
                             " SET timezone TO 'UTC+3'");
     statements.emplace_back("GRANT ALL PRIVILEGES ON DATABASE " + aDBName +
