@@ -1,4 +1,4 @@
-call D:\keys\server.bat
+call D:\keys\server2.bat
 
 @REM set ip=127.0.0.1
 
